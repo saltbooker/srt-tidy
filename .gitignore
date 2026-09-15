@@ -1,0 +1,4 @@
+/srt-tidy
+/bin/
+*.test
+*.out
