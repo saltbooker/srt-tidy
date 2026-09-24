@@ -19,6 +19,20 @@ func Normalize(c *Cue) {
 	}
 }
 
+// ResolveOverlaps walks cues in start-time order and clamps any cue whose
+// end time runs past the next cue's start, so no two cues are ever shown
+// at once. cues must already be sorted by Start. Checking only each cue
+// against its immediate successor is enough: Start is non-decreasing
+// across the slice, so if cue i no longer overlaps cue i+1 it can't
+// overlap anything further along either.
+func ResolveOverlaps(cues []*Cue) {
+	for i := 0; i < len(cues)-1; i++ {
+		if next := cues[i+1].Start; cues[i].End > next {
+			cues[i].End = next
+		}
+	}
+}
+
 func trimEmptyEdges(lines []string) []string {
 	start := 0
 	for start < len(lines) && lines[start] == "" {

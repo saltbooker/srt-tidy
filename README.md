@@ -59,11 +59,11 @@ Second line
 
 Early. What's there: streaming SRT parsing and writing, sorting cues by
 start time, sequential renumbering, timestamp normalization, whitespace
-cleanup within a cue.
+cleanup within a cue, clamping overlapping cue timespans so no two cues
+are ever shown at once.
 
-Not there yet: detecting or fixing overlapping cue timespans, WebVTT
-input/output, a `--check` mode that reports problems without rewriting the
-file.
+Not there yet: WebVTT input/output, a `--check` mode that reports problems
+without rewriting the file.
 
 ## License
 

@@ -66,6 +66,7 @@ func format(in io.Reader, out io.Writer) error {
 	sort.SliceStable(cues, func(i, j int) bool {
 		return cues[i].Start < cues[j].Start
 	})
+	srt.ResolveOverlaps(cues)
 
 	w := srt.NewWriter(out)
 	for _, cue := range cues {
